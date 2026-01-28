@@ -20,7 +20,7 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter>
+        <BrowserRouter basename="/karada-store">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/الخدمات" element={<ServicesPage />} />
