@@ -1,0 +1,343 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import Cairo Arabic Font */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap');
+
+/* Premium Karada Store Design System
+   Colors: Deep Navy + Warm Gold
+   Font: Cairo (Arabic-first)
+   Style: Modern tech-repair with subtle glass effects
+*/
+
+@layer base {
+  :root {
+    /* Base colors - Light mode */
+    --background: 220 20% 97%;
+    --foreground: 222 47% 11%;
+    
+    /* Card surfaces with slight warmth */
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    
+    /* Primary: Deep Navy */
+    --primary: 222 47% 15%;
+    --primary-foreground: 45 70% 90%;
+    
+    /* Secondary: Soft navy tint */
+    --secondary: 220 20% 94%;
+    --secondary-foreground: 222 47% 11%;
+    
+    /* Muted surfaces */
+    --muted: 220 15% 92%;
+    --muted-foreground: 220 10% 45%;
+    
+    /* Accent: Warm Gold */
+    --accent: 43 74% 55%;
+    --accent-foreground: 222 47% 11%;
+    
+    /* Gold variations for gradients */
+    --gold: 43 74% 55%;
+    --gold-light: 45 80% 70%;
+    --gold-dark: 40 65% 45%;
+    
+    /* Navy variations */
+    --navy: 222 47% 15%;
+    --navy-light: 220 35% 25%;
+    --navy-dark: 222 50% 8%;
+    
+    /* Destructive */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    
+    /* Borders and inputs */
+    --border: 220 15% 88%;
+    --input: 220 15% 88%;
+    --ring: 43 74% 55%;
+    
+    --radius: 0.75rem;
+    
+    /* Glass effect */
+    --glass-bg: 0 0% 100% / 0.7;
+    --glass-border: 0 0% 100% / 0.3;
+    
+    /* Sidebar */
+    --sidebar-background: 222 47% 11%;
+    --sidebar-foreground: 45 70% 95%;
+    --sidebar-primary: 43 74% 55%;
+    --sidebar-primary-foreground: 222 47% 11%;
+    --sidebar-accent: 222 40% 20%;
+    --sidebar-accent-foreground: 45 70% 95%;
+    --sidebar-border: 222 40% 20%;
+    --sidebar-ring: 43 74% 55%;
+  }
+
+  .dark {
+    /* Dark mode - Navy-based */
+    --background: 222 50% 6%;
+    --foreground: 45 20% 95%;
+    
+    --card: 222 45% 10%;
+    --card-foreground: 45 20% 95%;
+    
+    --popover: 222 45% 10%;
+    --popover-foreground: 45 20% 95%;
+    
+    /* Primary stays navy but lighter for contrast */
+    --primary: 45 70% 90%;
+    --primary-foreground: 222 47% 11%;
+    
+    --secondary: 222 40% 15%;
+    --secondary-foreground: 45 20% 95%;
+    
+    --muted: 222 35% 18%;
+    --muted-foreground: 220 15% 60%;
+    
+    /* Gold accent pops in dark mode */
+    --accent: 43 74% 55%;
+    --accent-foreground: 222 47% 11%;
+    
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 222 35% 20%;
+    --input: 222 35% 20%;
+    --ring: 43 74% 55%;
+    
+    /* Glass effect dark */
+    --glass-bg: 222 45% 12% / 0.8;
+    --glass-border: 222 35% 25% / 0.5;
+    
+    --sidebar-background: 222 50% 5%;
+    --sidebar-foreground: 45 70% 95%;
+    --sidebar-primary: 43 74% 55%;
+    --sidebar-primary-foreground: 222 47% 11%;
+    --sidebar-accent: 222 40% 12%;
+    --sidebar-accent-foreground: 45 70% 95%;
+    --sidebar-border: 222 40% 15%;
+    --sidebar-ring: 43 74% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    direction: rtl;
+    font-family: 'Cairo', sans-serif;
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "ss01", "ss02";
+  }
+  
+  /* Smooth theme transitions */
+  body, 
+  body * {
+    transition: background-color 0.3s ease, 
+                border-color 0.3s ease,
+                color 0.15s ease;
+  }
+}
+
+@layer components {
+  /* Premium Glass Card */
+  .glass-card {
+    @apply backdrop-blur-xl border shadow-lg;
+    background: hsl(var(--glass-bg));
+    border-color: hsl(var(--glass-border));
+  }
+  
+  /* Gold gradient text */
+  .text-gradient-gold {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(var(--gold-light)), hsl(var(--gold)), hsl(var(--gold-dark)));
+  }
+  
+  /* Gold gradient background */
+  .bg-gradient-gold {
+    background-image: linear-gradient(135deg, hsl(var(--gold-light)), hsl(var(--gold)), hsl(var(--gold-dark)));
+  }
+  
+  /* Navy gradient background */
+  .bg-gradient-navy {
+    background-image: linear-gradient(135deg, hsl(var(--navy-light)), hsl(var(--navy)), hsl(var(--navy-dark)));
+  }
+  
+  /* Hero gradient overlay */
+  .hero-gradient {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--navy-dark)) 0%,
+      hsl(var(--navy)) 50%,
+      hsl(var(--navy-light) / 0.9) 100%
+    );
+  }
+  
+  /* Premium button with gold accent */
+  .btn-premium {
+    @apply relative overflow-hidden font-semibold px-8 py-4 rounded-xl transition-all duration-300;
+    background: linear-gradient(135deg, hsl(var(--gold)), hsl(var(--gold-dark)));
+    color: hsl(var(--navy-dark));
+    box-shadow: 0 4px 20px hsl(var(--gold) / 0.4);
+  }
+  
+  .btn-premium:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px hsl(var(--gold) / 0.5);
+  }
+  
+  .btn-premium:active {
+    transform: translateY(0);
+  }
+  
+  /* Outlined premium button */
+  .btn-outline-premium {
+    @apply font-semibold px-8 py-4 rounded-xl transition-all duration-300 border-2;
+    border-color: hsl(var(--gold));
+    color: hsl(var(--gold));
+    background: transparent;
+  }
+  
+  .btn-outline-premium:hover {
+    background: hsl(var(--gold) / 0.1);
+    transform: translateY(-2px);
+  }
+  
+  /* Section container */
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  /* Premium card hover effect */
+  .card-hover {
+    @apply transition-all duration-300;
+  }
+  
+  .card-hover:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px hsl(var(--navy-dark) / 0.15);
+  }
+  
+  /* Status badge styles */
+  .status-badge {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-full font-semibold text-sm;
+  }
+  
+  .status-new {
+    @apply bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300;
+  }
+  
+  .status-in-progress {
+    @apply bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300;
+  }
+  
+  .status-ready {
+    @apply bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-300;
+  }
+  
+  .status-delivered {
+    @apply bg-gray-100 text-gray-800 dark:bg-gray-800/40 dark:text-gray-300;
+  }
+  
+  .status-cancelled {
+    @apply bg-red-100 text-red-800 dark:bg-red-900/40 dark:text-red-300;
+  }
+  
+  /* Timeline connector */
+  .timeline-line {
+    @apply absolute top-0 bottom-0 w-0.5;
+    right: 1.25rem;
+    background: linear-gradient(
+      to bottom,
+      hsl(var(--gold)),
+      hsl(var(--gold) / 0.3)
+    );
+  }
+  
+  /* Floating WhatsApp button */
+  .whatsapp-float {
+    @apply fixed bottom-6 left-6 z-50 w-14 h-14 rounded-full flex items-center justify-center shadow-2xl transition-all duration-300;
+    background: #25D366;
+  }
+  
+  .whatsapp-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4);
+  }
+  
+  /* Loader animation */
+  .loader-pulse {
+    @apply animate-pulse;
+  }
+  
+  /* RTL-aware animations */
+  .slide-in-right {
+    animation: slideInRight 0.5s ease-out forwards;
+  }
+  
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  /* Fade up animation */
+  .fade-up {
+    animation: fadeUp 0.6s ease-out forwards;
+  }
+  
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Subtle glow effect */
+  .glow-gold {
+    box-shadow: 0 0 40px hsl(var(--gold) / 0.2);
+  }
+  
+  /* Input focus ring gold */
+  .input-gold:focus {
+    @apply ring-2 outline-none;
+    ring-color: hsl(var(--gold));
+    border-color: hsl(var(--gold));
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--gold) / 0.5);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--gold));
+}
